@@ -15,6 +15,8 @@ export const Gifts: React.FC = () => {
 
         const initButton = () => {
             if (window.PayHero) {
+                const container = document.getElementById('payHero');
+                if (container) container.innerHTML = ''; // Clear previous instances
                 window.PayHero.init({
                     paymentUrl: "https://app.payhero.co.ke/lipwa/5",
                     width: "100%",
