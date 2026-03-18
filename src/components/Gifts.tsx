@@ -1,8 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Gift, Heart, Phone } from 'lucide-react';
+import { Gift, Heart, Phone, CreditCard } from 'lucide-react';
+
+declare global {
+    interface Window {
+        PayHero: any;
+    }
+}
 
 export const Gifts: React.FC = () => {
+    useEffect(() => {
+        // Initialize PayHero button
+        if (window.PayHero) {
+            window.PayHero.init({
+                paymentUrl: "https://app.payhero.co.ke/lipwa/5", // Replace with your Lipwa link
+                width: "100%",
+                height: "100%",
+                containerId: "payHero",
+                channelID: 100, // Your payment channel ID
+                amount: 1, // Payment amount
+                phone: "", // (Optional) Customer phone
+                name: "Wedding Guest", // (Optional) Customer name
+                reference: "ElizabethTobiasWedding", // (Optional) Payment reference
+                buttonName: "GIVE KES 1", // Button text
+                buttonColor: "#FF6B26", // Button color (Vibrant Orange)
+                successUrl: null,
+                failedUrl: null,
+                callbackUrl: null
+            });
+        }
+
+        const handleMessage = (event: MessageEvent) => {
+            if (event.data.paymentSuccess) {
+                console.log("Payment Successful:", event.data);
+                alert('Thank you for your generous gift!');
+            }
+        };
+
+        window.addEventListener('message', handleMessage);
+        return () => window.removeEventListener('message', handleMessage);
+    }, []);
+
     return (
         <section id="gifts" className="py-24 px-4 bg-off-white relative overflow-hidden">
             <div className="max-w-4xl mx-auto relative">
@@ -25,6 +63,29 @@ export const Gifts: React.FC = () => {
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    {/* PayHero Card */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="bg-white border-4 border-navy p-8 shadow-brutal col-span-1 md:col-span-2 flex flex-col md:flex-row items-center gap-8"
+                    >
+                        <div className="flex-1">
+                            <span className="sticker bg-navy text-white mb-3">Secure Contribution</span>
+                            <h3 className="font-serif text-3xl font-black text-navy mb-4 uppercase">Direct Donation</h3>
+                            <p className="font-bold text-navy/60 leading-relaxed mb-6">
+                                Support us directly via cards or M-Pesa using our secure Pay Hero channel. Every blessing counts.
+                            </p>
+                            <div className="flex items-center gap-4 text-xs font-black text-navy/40 uppercase tracking-tighter">
+                                <CreditCard size={16} />
+                                SECURE ENCRYPTED PAYMENTS
+                            </div>
+                        </div>
+                        <div className="w-full md:w-64">
+                            <div id="payHero" className="min-h-[60px]"></div>
+                        </div>
+                    </motion.div>
+
                     {/* M-Pesa Card */}
                     <motion.div
                         initial={{ opacity: 0, x: -40 }}
@@ -49,7 +110,7 @@ export const Gifts: React.FC = () => {
                         </div>
                     </motion.div>
 
-                    {/* Wedding Registry / General Info Card */}
+                    {/* Registry Card */}
                     <motion.div
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
