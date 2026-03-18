@@ -20,7 +20,7 @@ export const Gifts: React.FC = () => {
                 const container = document.getElementById('payHero');
                 if (container) container.innerHTML = ''; // Clear previous instances
                 window.PayHero.init({
-                    paymentUrl: "https://app.payhero.co.ke/lipwa/5",
+                    paymentUrl: `https://app.payhero.co.ke/lipwa/5?amount=${amount || 1}`,
                     width: "100%",
                     height: "100%",
                     containerId: "payHero",
