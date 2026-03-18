@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/playfair-display/900.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/700.css";
+
+@theme {
+  --color-off-white: #FAFAFA;
+  --color-navy: #1A237E;
+  --color-vibrant-orange: #FF6D00;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  --shadow-brutal: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+
+  --font-heading: var(--font-serif);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --color-text-h: var(--color-navy);
+  --color-code-bg: rgba(26, 35, 126, 0.05);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply bg-off-white text-navy font-sans antialiased;
+    background-image: radial-gradient(circle, #1a237e 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .brutal-border {
+    @apply border-2 border-navy shadow-brutal bg-white;
+  }
+
+  .brutal-btn {
+    @apply border-2 border-navy shadow-brutal bg-vibrant-orange text-white font-bold px-6 py-3 transition-all hover:-translate-x-1 hover:-translate-y-1 active:translate-x-0 active:translate-y-0 active:shadow-brutal;
+  }
+
+  .brutal-btn:hover {
+    box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  .sticker {
+    @apply inline-block px-3 py-1 font-bold uppercase tracking-tighter border-2 border-navy -rotate-2 bg-vibrant-orange text-white;
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  .thick-underline {
+    @apply relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-2 after:bg-vibrant-orange after:-z-10;
+  }
+}
+
+h1,
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  color: var(--color-text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--font-mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--color-text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--color-code-bg);
+}
