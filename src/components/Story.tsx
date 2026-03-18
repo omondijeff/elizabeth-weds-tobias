@@ -49,7 +49,7 @@ export const Story: React.FC = () => {
                 <div className="mt-4 sticker bg-white">Narrated by Tobias</div>
             </motion.div>
 
-            <div className="max-w-4xl mx-auto relative">
+            <div className="max-w-6xl mx-auto relative">
                 {/* Timeline Line */}
                 <div className="absolute left-1/2 top-0 bottom-0 w-2 bg-navy -translate-x-1/2 hidden md:block border-x-2 border-white"></div>
 

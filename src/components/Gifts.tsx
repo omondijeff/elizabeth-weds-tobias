@@ -62,7 +62,7 @@ export const Gifts: React.FC = () => {
                 </span>
             </div>
 
-            <div className="max-w-4xl mx-auto relative z-10">
+            <div className="max-w-6xl mx-auto relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}

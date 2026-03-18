@@ -54,7 +54,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onSuccess }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="w-full max-w-2xl mx-auto my-16 relative"
+            className="w-full max-w-4xl mx-auto my-16 relative"
         >
             {/* Ticket Perforation Effect (CSS) */}
             <div className="absolute -left-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-10">

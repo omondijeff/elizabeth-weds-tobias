@@ -23,7 +23,7 @@ export const Hero: React.FC = () => {
                 <div className="absolute inset-0 bg-navy translate-x-4 translate-y-4 -z-10 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform"></div>
                 <div className="absolute inset-0 bg-vibrant-orange -translate-x-2 -translate-y-2 -z-20 group-hover:-translate-x-4 group-hover:-translate-y-4 transition-transform"></div>
 
-                <div className="border-4 border-navy bg-white p-3 shadow-brutal max-w-sm mx-auto relative overflow-hidden">
+                <div className="border-4 border-navy bg-white p-3 shadow-brutal max-w-md mx-auto relative overflow-hidden">
                     <div className="w-full aspect-[4/5] overflow-hidden bg-navy/5">
                         <img
                             src="/pictures/PHOTO-2026-03-17-10-55-12.jpg"

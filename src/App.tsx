@@ -173,6 +173,14 @@ function App() {
             <p className="font-black uppercase tracking-[0.5em] text-xs md:text-sm text-navy/40">
               Elizabeth & Tobias • Built for the Bold
             </p>
+            <a
+              href="https://omondijeff.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 text-[10px] font-black uppercase tracking-[0.3em] text-navy/30 hover:text-vibrant-orange transition-colors"
+            >
+              Crafted with ❤️ by Jeff Omondi
+            </a>
             <div className="flex gap-6">
               <div className="w-12 h-12 bg-navy border-4 border-navy shadow-brutal"></div>
               <div className="w-12 h-12 bg-vibrant-orange border-4 border-navy shadow-brutal"></div>

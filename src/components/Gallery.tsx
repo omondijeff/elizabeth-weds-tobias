@@ -48,7 +48,7 @@ export const Gallery: React.FC = () => {
                 <div className="mt-4 sticker bg-white">A Journey of Faith & Love</div>
             </motion.div>
 
-            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-[300px]">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-[400px]">
                 {photos.map((photo, index) => (
                     <motion.div
                         key={photo.id}
