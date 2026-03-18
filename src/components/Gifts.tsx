@@ -9,6 +9,8 @@ declare global {
 }
 
 export const Gifts: React.FC = () => {
+    const [amount, setAmount] = React.useState<number>(1000); // Default 1000 KES
+
     useEffect(() => {
         let retryCount = 0;
         const maxRetries = 10;
@@ -23,11 +25,11 @@ export const Gifts: React.FC = () => {
                     height: "100%",
                     containerId: "payHero",
                     channelID: 100,
-                    amount: 1,
+                    amount: amount || 1, // Fallback to 1 if empty
                     phone: "",
                     name: "Wedding Guest",
                     reference: "ElizabethTobiasWedding",
-                    buttonName: "BLESSED GIFT (KES 1)",
+                    buttonName: `BLESSED GIFT (KES ${amount || 1})`,
                     buttonColor: "#FF6B26",
                     successUrl: null,
                     failedUrl: null,
@@ -49,7 +51,7 @@ export const Gifts: React.FC = () => {
 
         window.addEventListener('message', handleMessage);
         return () => window.removeEventListener('message', handleMessage);
-    }, []);
+    }, [amount]); // Re-initialize when amount changes
 
     return (
         <section id="gifts" className="py-24 px-4 bg-off-white relative overflow-hidden">
@@ -78,21 +80,41 @@ export const Gifts: React.FC = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="bg-white border-4 border-navy p-8 shadow-brutal col-span-1 md:col-span-2 flex flex-col md:flex-row items-center gap-8"
+                        className="bg-white border-4 border-navy p-8 shadow-brutal col-span-1 md:col-span-2 flex flex-col md:flex-row items-center gap-12"
                     >
                         <div className="flex-1">
                             <span className="sticker bg-navy text-white mb-3">Secure Contribution</span>
                             <h3 className="font-serif text-3xl font-black text-navy mb-4 uppercase">Direct Donation</h3>
                             <p className="font-bold text-navy/60 leading-relaxed mb-6">
-                                Support us directly via cards or M-Pesa using our secure Pay Hero channel. Every blessing counts.
+                                Support us directly via cards or M-Pesa. Enter your desired amount below and follow the secure Pay Hero prompt.
                             </p>
-                            <div className="flex items-center gap-4 text-xs font-black text-navy/40 uppercase tracking-tighter">
+
+                            <div className="space-y-4 max-w-sm">
+                                <label className="block text-xs font-black text-navy uppercase tracking-widest pl-1">
+                                    Enter Amount (KES)
+                                </label>
+                                <div className="relative group">
+                                    <input
+                                        type="number"
+                                        value={amount}
+                                        onChange={(e) => setAmount(Number(e.target.value))}
+                                        placeholder="Enter amount..."
+                                        className="w-full bg-off-white border-4 border-navy p-4 font-black text-2xl text-navy outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(255,107,38,1)] transition-all placeholder:text-navy/20"
+                                    />
+                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 font-black text-navy/30">KES</div>
+                                </div>
+                            </div>
+
+                            <div className="mt-8 flex items-center gap-4 text-xs font-black text-navy/40 uppercase tracking-tighter">
                                 <CreditCard size={16} />
                                 SECURE ENCRYPTED PAYMENTS
                             </div>
                         </div>
-                        <div className="w-full md:w-64">
-                            <div id="payHero" className="min-h-[60px]"></div>
+                        <div className="w-full md:w-72 flex flex-col items-center justify-center bg-off-white/50 border-4 border-dashed border-navy/10 p-8 rounded-2xl">
+                            <div id="payHero" className="w-full min-h-[60px]"></div>
+                            <p className="mt-4 text-[10px] font-bold text-navy/30 text-center uppercase tracking-widest">
+                                Transaction processed by Pay Hero Kenya
+                            </p>
                         </div>
                     </motion.div>
 
