@@ -10,30 +10,38 @@ declare global {
 
 export const Gifts: React.FC = () => {
     useEffect(() => {
-        // Initialize PayHero button
-        if (window.PayHero) {
-            window.PayHero.init({
-                paymentUrl: "https://app.payhero.co.ke/lipwa/5", // Replace with your Lipwa link
-                width: "100%",
-                height: "100%",
-                containerId: "payHero",
-                channelID: 100, // Your payment channel ID
-                amount: 1, // Payment amount
-                phone: "", // (Optional) Customer phone
-                name: "Wedding Guest", // (Optional) Customer name
-                reference: "ElizabethTobiasWedding", // (Optional) Payment reference
-                buttonName: "GIVE KES 1", // Button text
-                buttonColor: "#FF6B26", // Button color (Vibrant Orange)
-                successUrl: null,
-                failedUrl: null,
-                callbackUrl: null
-            });
-        }
+        let retryCount = 0;
+        const maxRetries = 10;
+
+        const initButton = () => {
+            if (window.PayHero) {
+                window.PayHero.init({
+                    paymentUrl: "https://app.payhero.co.ke/lipwa/5",
+                    width: "100%",
+                    height: "100%",
+                    containerId: "payHero",
+                    channelID: 100,
+                    amount: 1,
+                    phone: "",
+                    name: "Wedding Guest",
+                    reference: "ElizabethTobiasWedding",
+                    buttonName: "BLESSED GIFT (KES 1)",
+                    buttonColor: "#FF6B26",
+                    successUrl: null,
+                    failedUrl: null,
+                    callbackUrl: null
+                });
+            } else if (retryCount < maxRetries) {
+                retryCount++;
+                setTimeout(initButton, 500);
+            }
+        };
+
+        initButton();
 
         const handleMessage = (event: MessageEvent) => {
             if (event.data.paymentSuccess) {
-                console.log("Payment Successful:", event.data);
-                alert('Thank you for your generous gift!');
+                alert('Thank you for your generous gift! May you be blessed.');
             }
         };
 
