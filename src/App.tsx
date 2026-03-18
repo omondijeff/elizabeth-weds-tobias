@@ -45,7 +45,7 @@ function App() {
         </motion.div>
       </div>
 
-      <main className="max-w-7xl mx-auto">
+      <main className="w-full">
 
         <Hero />
 
