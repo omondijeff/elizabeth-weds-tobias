@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { Countdown } from './components/Countdown';
 import { Story } from './components/Story';
 import { Gallery } from './components/Gallery';
+import { Gifts } from './components/Gifts';
 import { RSVPForm } from './components/RSVPForm';
 import { ThankYou } from './components/ThankYou';
 import { MapPin, Clock, Calendar } from 'lucide-react';
@@ -127,7 +128,9 @@ function App() {
           </motion.div>
         </section>
 
-        <PerforatedDivider text="RSVP" />
+        <Gifts />
+
+        <PerforatedDivider text="RSVP NOW" />
 
         <section className="px-4 pb-44" id="rsvp">
           <AnimatePresence mode="wait">
