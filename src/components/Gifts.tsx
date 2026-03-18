@@ -55,66 +55,77 @@ export const Gifts: React.FC = () => {
 
     return (
         <section id="gifts" className="py-24 px-4 bg-off-white relative overflow-hidden">
-            <div className="max-w-4xl mx-auto relative">
+            {/* Background Decorative Text - "BLESSINGS" */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.03] select-none pointer-events-none z-0">
+                <span className="font-black text-[15vw] leading-none text-navy uppercase tracking-[-0.05em] block text-center">
+                    BLESSINGS
+                </span>
+            </div>
+
+            <div className="max-w-4xl mx-auto relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, ease: "easeOut" }}
-                    className="text-center mb-16"
+                    className="text-center mb-20"
                 >
                     <div className="inline-block relative">
                         <div className="absolute inset-0 bg-vibrant-orange -rotate-2 -z-10 blur-sm opacity-20"></div>
-                        <h2 className="font-serif text-5xl md:text-6xl font-black text-navy uppercase tracking-tighter">
+                        <h2 className="font-serif text-5xl md:text-7xl font-black text-navy uppercase tracking-tighter">
                             Gifts & <span className="text-vibrant-orange italic">Support</span>
                         </h2>
                     </div>
-                    <p className="mt-6 font-bold text-navy/70 max-w-xl mx-auto text-lg">
+                    <p className="mt-8 font-bold text-navy/70 max-w-xl mx-auto text-lg leading-relaxed">
                         Your presence is the greatest gift of all. However, if you wish to honor us with a gift, your support towards our new chapter is deeply appreciated.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    {/* PayHero Card */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    {/* PayHero Card - Primary Contribution */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="bg-white border-4 border-navy p-8 shadow-brutal col-span-1 md:col-span-2 flex flex-col md:flex-row items-center gap-12"
+                        className="bg-white border-4 border-navy p-8 md:p-12 shadow-brutal col-span-1 md:col-span-2"
                     >
-                        <div className="flex-1">
-                            <span className="sticker bg-navy text-white mb-3">Secure Contribution</span>
-                            <h3 className="font-serif text-3xl font-black text-navy mb-4 uppercase">Direct Donation</h3>
-                            <p className="font-bold text-navy/60 leading-relaxed mb-6">
-                                Support us directly via cards or M-Pesa. Enter your desired amount below and follow the secure Pay Hero prompt.
-                            </p>
+                        <div className="flex flex-col lg:flex-row gap-12 items-center">
+                            <div className="flex-1 w-full text-center lg:text-left">
+                                <span className="sticker bg-navy text-white mb-4">Secure & Fast</span>
+                                <h3 className="font-serif text-3xl md:text-4xl font-black text-navy mb-6 uppercase">Direct Donation</h3>
+                                <p className="font-bold text-navy/60 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+                                    Support us directly via cards or M-Pesa. Enter your desired amount below and follow the secure Pay Hero prompt.
+                                </p>
 
-                            <div className="space-y-4 max-w-sm">
-                                <label className="block text-xs font-black text-navy uppercase tracking-widest pl-1">
-                                    Enter Amount (KES)
-                                </label>
-                                <div className="relative group">
-                                    <input
-                                        type="number"
-                                        value={amount}
-                                        onChange={(e) => setAmount(Number(e.target.value))}
-                                        placeholder="Enter amount..."
-                                        className="w-full bg-off-white border-4 border-navy p-4 font-black text-2xl text-navy outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(255,107,38,1)] transition-all placeholder:text-navy/20"
-                                    />
-                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 font-black text-navy/30">KES</div>
+                                <div className="space-y-4 max-w-sm mx-auto lg:mx-0">
+                                    <label className="block text-xs font-black text-navy uppercase tracking-[0.2em] opacity-40">
+                                        Enter Amount (KES)
+                                    </label>
+                                    <div className="relative group">
+                                        <input
+                                            type="number"
+                                            value={amount}
+                                            onChange={(e) => setAmount(Number(e.target.value))}
+                                            placeholder="Enter amount..."
+                                            className="w-full bg-off-white border-4 border-navy p-5 font-black text-3xl text-navy outline-none focus:bg-white focus:shadow-[8px_8px_0px_0px_rgba(255,107,38,1)] transition-all placeholder:text-navy/10"
+                                        />
+                                        <div className="absolute right-6 top-1/2 -translate-y-1/2 font-black text-navy/20 text-xl">KES</div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 text-xs font-black text-navy/30 uppercase tracking-[0.1em]">
+                                    <CreditCard size={18} />
+                                    SECURE ENCRYPTED PAYMENTS
                                 </div>
                             </div>
 
-                            <div className="mt-8 flex items-center gap-4 text-xs font-black text-navy/40 uppercase tracking-tighter">
-                                <CreditCard size={16} />
-                                SECURE ENCRYPTED PAYMENTS
+                            <div className="w-full lg:w-80 flex flex-col items-center justify-center bg-off-white border-4 border-navy/5 p-10 rounded-3xl relative overflow-hidden group">
+                                <div className="absolute inset-0 bg-vibrant-orange opacity-0 group-hover:opacity-[0.02] transition-opacity"></div>
+                                <div id="payHero" className="w-full min-h-[60px] relative z-10 scale-110"></div>
+                                <p className="mt-8 text-[10px] font-black text-navy/20 text-center uppercase tracking-[0.2em] leading-loose">
+                                    Official Payment Channel<br />Powered by Pay Hero Kenya
+                                </p>
                             </div>
-                        </div>
-                        <div className="w-full md:w-72 flex flex-col items-center justify-center bg-off-white/50 border-4 border-dashed border-navy/10 p-8 rounded-2xl">
-                            <div id="payHero" className="w-full min-h-[60px]"></div>
-                            <p className="mt-4 text-[10px] font-bold text-navy/30 text-center uppercase tracking-widest">
-                                Transaction processed by Pay Hero Kenya
-                            </p>
                         </div>
                     </motion.div>
 
@@ -124,56 +135,48 @@ export const Gifts: React.FC = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.2, delay: 0.2 }}
-                        className="bg-white border-4 border-navy p-8 shadow-brutal group relative overflow-hidden"
+                        className="bg-white border-4 border-navy p-8 md:p-10 shadow-brutal group flex flex-col justify-between"
                     >
-                        <div className="absolute top-0 right-0 w-24 h-24 bg-vibrant-orange/10 rounded-bl-full -z-10 group-hover:bg-vibrant-orange/20 transition-colors"></div>
                         <div className="flex items-start gap-6">
-                            <div className="bg-navy text-white p-4 rounded-xl shadow-[4px_4px_0px_0px_rgba(255,107,38,1)]">
-                                <Phone size={32} />
+                            <div className="bg-navy text-white p-5 rounded-2xl shadow-[6px_6px_0px_0px_rgba(255,107,38,1)] flex-shrink-0">
+                                <Phone size={36} />
                             </div>
                             <div>
-                                <span className="sticker bg-vibrant-orange text-white mb-3">M-Pesa Support</span>
-                                <h3 className="font-serif text-3xl font-black text-navy mb-4 uppercase">Tobias's Phone</h3>
-                                <div className="space-y-2">
-                                    <p className="text-xl font-black text-navy select-all tracking-wider">+254 711 528353</p>
-                                    <p className="font-bold text-navy/60 uppercase text-sm tracking-widest">Account: Tobias Okoth</p>
+                                <span className="sticker bg-vibrant-orange text-white mb-4">Mobile Money</span>
+                                <h3 className="font-serif text-3xl font-black text-navy mb-6 uppercase">M-Pesa Support</h3>
+                                <div className="space-y-3">
+                                    <p className="text-2xl font-black text-navy select-all tracking-wider">+254 711 528353</p>
+                                    <p className="font-black text-navy/40 uppercase text-xs tracking-widest bg-navy/5 inline-block px-3 py-1 rounded-full">
+                                        Account: Tobias Okoth
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Registry Card */}
+                    {/* Registry Alternative Card */}
                     <motion.div
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.2, delay: 0.4 }}
-                        className="bg-navy text-white border-4 border-navy p-8 shadow-brutal-orange group relative overflow-hidden"
+                        className="bg-navy text-white border-4 border-navy p-8 md:p-10 shadow-brutal-orange group relative overflow-hidden flex flex-col justify-between"
                     >
-                        <div className="absolute -bottom-4 -right-4 text-white/10 rotate-12 group-hover:rotate-0 transition-transform duration-700">
-                            <Gift size={160} />
+                        <div className="absolute -bottom-6 -right-6 text-white/5 rotate-12 group-hover:rotate-0 transition-transform duration-1000">
+                            <Gift size={200} />
                         </div>
-                        <div className="relative z-10 h-full flex flex-col justify-between">
-                            <div>
-                                <span className="sticker bg-white text-navy mb-3">Heartfelt Thanks</span>
-                                <h3 className="font-serif text-3xl font-black text-white mb-4 uppercase">Registry & More</h3>
-                                <p className="font-bold text-white/80 leading-relaxed">
-                                    Whether it's a contribution to our honeymoon or a keepsake for our first home, your kindness blesses our union in a special way.
-                                </p>
-                            </div>
-                            <div className="mt-8 flex items-center gap-2 text-vibrant-orange font-black uppercase tracking-widest text-sm">
-                                <Heart size={18} fill="currentColor" />
-                                With Love, E & T
-                            </div>
+                        <div className="relative z-10">
+                            <span className="sticker bg-white text-navy mb-4">Gifts Registry</span>
+                            <h3 className="font-serif text-3xl font-black text-white mb-6 uppercase">Future Home</h3>
+                            <p className="font-bold text-white/70 leading-relaxed text-lg mb-8">
+                                Helping us build our first home together is a blessing we will cherish forever.
+                            </p>
+                        </div>
+                        <div className="relative z-10 flex items-center gap-3 text-vibrant-orange font-black uppercase tracking-[0.2em] text-xs">
+                            <Heart size={20} fill="currentColor" />
+                            E & T • WITH LOVE
                         </div>
                     </motion.div>
-                </div>
-
-                {/* Decorative Elements */}
-                <div className="mt-16 text-center opacity-30 select-none pointer-events-none">
-                    <span className="font-black text-8xl text-navy uppercase tracking-[0.5em] block overflow-hidden whitespace-nowrap">
-                        BLESSINGS • GRATITUDE • LOVE • SUPPORT •
-                    </span>
                 </div>
             </div>
         </section>
